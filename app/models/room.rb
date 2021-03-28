@@ -6,9 +6,18 @@ class Room < ApplicationRecord
   validates :name, format: { with: /\A.+#\d{2}\z/, message: '会議室名が正しくありません' }
   validate :number_5multiple_check
 
+  before_validation :formatting_name
+
   private
 
   def number_5multiple_check
     errors.add(:number, '収容人数は５の倍数で指定してください') unless number % 5 == 0
+  end
+
+  def formatting_name
+    self.name = name.strip
+
+    puts name.gsub(/ +/, '_')
+    self.name = name.gsub(/ +/, '_')
   end
 end
