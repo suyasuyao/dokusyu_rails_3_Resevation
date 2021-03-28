@@ -3,5 +3,5 @@ class Room < ApplicationRecord
   validates :name, length: { maximum: 30, minimum: 1 }
   validates :place, inclusion: { in: %w[東京 大阪 金沢 福岡 札幌 仙台 名古屋 金沢] }
   validates :number, numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 30 }
-  # validates :name, format: { with: /.+\d{2}/ }
+  validates :name, format: { with: /\A.+#\d{2}\z/ }
 end
